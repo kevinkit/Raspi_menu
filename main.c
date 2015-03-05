@@ -21,7 +21,7 @@ int main()
 
 
 
-	if (wiringPiSetup() == -!)
+	if (wiringPiSetup() == -1)
 		return -1
 	
 	//GPIO 23,24,25 auf Eingang schalten
@@ -39,7 +39,11 @@ int main()
 		{
 
 			//Entscheidung ob im Submenu oder im Hauptmenü
-			printf("Countet up once!\n");
+			if(debug == 1)
+			{
+				printf("Countet up once!\n");
+			}
+		
 			if(binary_semaphor == 1)
 			{
 				if(MENU_POS <= MAX_SUB_MEN_POINTS)
@@ -71,8 +75,11 @@ int main()
 		if(digitalReader(5) == active_high_enable)
 		{
 			//Entscheidung ob im Submenu oder im Hauptmenü
+			if(debug == 1)
+			{
+				printf("Counted down once!\n");
+			}
 			
-			printf("Counted down once!\n");
 			if(binary_semaphor == 1)
 			{
 				if(MENU_POS > 0)
@@ -109,26 +116,16 @@ int main()
 			}
 			
 			MENU_POS = 0;
-			printf("entered Menu-point %d\n", MENU_POS);
+			
+			if(debug == 1)
+			{
+				printf("entered Menu-point %d\n", MENU_POS);
+		
+			}		
 		}
 	
 	
 	}
 	
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
